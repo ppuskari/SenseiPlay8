@@ -21,7 +21,7 @@ To restore the **exact original recovered P0 binary and synthetic MOD** from the
 py -3 tools/import-p0.py recovery/senseiplay_iie_p0_sources.patch
 ```
 
-The import tool verifies the recovered source matches this repository, then creates `assets/sensei8-original-demo.mod` and `dist/SENSEI8-P0.BIN` from the original Git binary patch. `build/` is ignored because generated binaries are rebuilt locally.
+The import tool verifies the original artifact SHA-256 checksums, reports any differences from the archived P0 source snapshot without blocking future development, then creates `assets/sensei8-original-demo.mod` and `dist/SENSEI8-P0.BIN` from the original Git binary patch. `build/` is ignored because generated binaries are rebuilt locally.
 
 ## Hardware P0 — not yet confirmed
 
