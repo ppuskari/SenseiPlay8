@@ -33,6 +33,8 @@ jobs:
         run: python -c "from pathlib import Path; assert Path('dist/SENSEI8-P0.BIN').read_bytes() == Path('build/SENSEI8.BIN').read_bytes(), 'P0 binary mismatch'"
       - name: Build deterministic P0L4 isolated stereo SYS
         run: python tools/make_p0l4_sys.py
+      - name: Build deterministic P0P8 musical pitch experiment
+        run: python tools/make_p0p8_sys.py
       - name: Package recovered P0 hardware test assets
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
@@ -41,5 +43,6 @@ jobs:
           path: |
             dist/SENSEI8-P0.BIN
             dist/SENSEI8-P0L4.SYSTEM
+            dist/SENSEI8-P0P8.SYSTEM
             assets/sensei8-original-demo.mod
           if-no-files-found: error
