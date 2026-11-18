@@ -25,6 +25,8 @@ jobs:
           python tools/s8asm.py src/sensei8.s --out build/SENSEI8.BIN
       - name: Diagnose cross-platform artifact hashes
         run: python -c "from pathlib import Path; from hashlib import sha256; files=['assets/sensei8-original-demo.mod','dist/SENSEI8-P0.BIN','build/SENSEI8.BIN']; [print(p,sha256(Path(p).read_bytes()).hexdigest()) for p in files]"
+      - name: Verify generated synthetic MOD is bit-identical to archive
+        run: python -c "from pathlib import Path; import json,hashlib; m=json.loads(Path('recovery/original-P0-MANIFEST.json').read_text()); actual=hashlib.sha256(Path('assets/sensei8-original-demo.mod').read_bytes()).hexdigest(); assert actual==m['assets/sensei8-original-demo.mod']['sha256'], 'demo MOD mismatch'"
       - name: Run 6502 and DOC bus simulator
         run: python tests/test_player.py
       - name: Verify bit-identical P0 rebuild

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate a tiny ORIGINAL (not copyrighted) 4-channel ProTracker MOD test."""
 from pathlib import Path
-import math
 import struct
 import argparse
+from demo_waves import VOICE_SAMPLES
 
 def make():
     song=bytearray(1084 + 1024)
@@ -12,15 +12,7 @@ def make():
     for i,name in enumerate(('SINE','TRIANGLE','PULSE','BELL')):
         off=20+i*30
         song[off:off+len(name)]=name.encode('ascii')
-        wave=[]
-        for x in range(256):
-            a=2*math.pi*x/256
-            if i==0: v=math.sin(a)*110
-            elif i==1: v=(2/math.pi)*math.asin(math.sin(a))*115
-            elif i==2: v=(110 if x < 128 else -110)
-            else: v=(math.sin(a)*100+math.sin(3*a)*24+math.sin(5*a)*10)
-            wave.append(round(max(-127,min(127,v))) & 255)
-        waveforms.extend(wave)
+        waveforms.extend(VOICE_SAMPLES[i])
         song[off+22:off+24]=struct.pack('>H',128) # length 256
         song[off+25]=48 # volume
         song[off+26:off+28]=struct.pack('>H',0)
