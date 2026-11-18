@@ -6,24 +6,29 @@ on:
 
 jobs:
   p0-software-smoke:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Restore exact P0 demo and binary from recovery patch
-        run: python3 tools/import-p0.py recovery/senseiplay_iie_p0_sources.patch
+      - name: Restore original P0 demo and binary on each OS
+        run: python tools/import-p0.py recovery/senseiplay_iie_p0_sources.patch
       - name: Run P0 synthetic demo and converter
         run: |
-          python3 tools/make_demo_mod.py
-          python3 tools/mod_to_s8m.py assets/sensei8-original-demo.mod
-          python3 tools/s8asm.py src/sensei8.s --out build/SENSEI8.BIN
+          python tools/make_demo_mod.py
+          python tools/mod_to_s8m.py assets/sensei8-original-demo.mod
+          python tools/s8asm.py src/sensei8.s --out build/SENSEI8.BIN
       - name: Run 6502 and DOC bus simulator
-        run: python3 tests/test_player.py
-      - name: Check recovered original matches reproducible build
-        run: cmp dist/SENSEI8-P0.BIN build/SENSEI8.BIN
-      - name: Package recovered DOS 3.3 P0 test assets
+        run: python tests/test_player.py
+      - name: Verify bit-identical P0 rebuild
+        run: python -c "from pathlib import Path; assert Path('dist/SENSEI8-P0.BIN').read_bytes() == Path('build/SENSEI8.BIN').read_bytes(), 'P0 binary mismatch'"
+      - name: Package recovered P0 hardware test assets
+        if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
           name: SenseiPlay8-P0-test-assets
