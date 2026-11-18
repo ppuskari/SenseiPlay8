@@ -35,6 +35,11 @@ jobs:
         run: python tools/make_p0l4_sys.py
       - name: Build deterministic P0P8 musical pitch experiment
         run: python tools/make_p0p8_sys.py
+      - name: Generate P1A three-pattern demo and ProDOS SYS
+        run: |
+          python tools/make_p1_demo_mod.py
+          python tools/p1_build.py assets/sensei8-p1-three-pattern.mod
+          python tests/test_p1.py
       - name: Package recovered P0 hardware test assets
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
@@ -44,5 +49,7 @@ jobs:
             dist/SENSEI8-P0.BIN
             dist/SENSEI8-P0L4.SYSTEM
             dist/SENSEI8-P0P8.SYSTEM
+            dist/SENSEI8-P1A.SYSTEM
+            assets/sensei8-p1-three-pattern.mod
             assets/sensei8-original-demo.mod
           if-no-files-found: error

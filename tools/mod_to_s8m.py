@@ -135,7 +135,7 @@ def decode_event(pattern: bytes, offset: int):
     return inst, period, effect, d
 
 
-def convert(data: bytes):
+def convert(data: bytes, *, max_rows: int = MAX_ROWS):
     orders, patterns, samples = read_mod(data)
     # Only one explicit event per MOD row. Bxx/Dxx require order control,
     # and effects 0..A require per-tick updates not implemented by P0.
@@ -197,8 +197,8 @@ def convert(data: bytes):
             stream.append(duration)
             stream.extend(events)
     nrows = len(stream)//29
-    if nrows > MAX_ROWS:
-        raise ModError(f'{nrows} rows exceed P0 255-row unrolled limit; try 1..3 orders')
+    if nrows > max_rows:
+        raise ModError(f'{nrows} rows exceed configured {max_rows}-row limit')
     if len(stream)+len(sample_bank) > MAX_TOTAL_MODULE:
         raise ModError(f'{len(stream)+len(sample_bank)}-byte payload exceeds P0 main-RAM limit {MAX_TOTAL_MODULE}')
     return sample_bank, bytes(stream), sorted(warnings), catalog
