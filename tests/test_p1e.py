@@ -28,8 +28,9 @@ def run():
             assert img[0]==0x4C and len(img)<0x3000
             assert int.from_bytes(img[1:3],'little')==0x2000+len(img)-24
             assert img[0x298:0x298+len(bank)]==bank
-            sim=LinkedIIe(bytearray(img[:-24]),bridge=True)
-            sim.mem[0x2000:0x2003]=p0[:3]
+            raw=bytearray(img[:-24])
+            raw[:3]=p0[:3]
+            sim=LinkedIIe(raw,bridge=True)
             sim.run(limit=600000)
             assert sim.upload_count==len(bank)
             assert sim.song_arg==song_id
