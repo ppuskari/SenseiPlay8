@@ -43,7 +43,7 @@ def run():
     sim = Tiny6502(raw)
     sim.run(limit=1500000)
     assert sim.upload_count == 1024, sim.upload_count
-    assert len(sim.run_events) == 176, len(sim.run_events)  # bass every 8 rows
+    assert len(sim.run_events) == 168, len(sim.run_events)  # 48 x 3 non-bass + 24 bass
     assert {e[0] for e in sim.run_events} == {0xA0,0xA1,0xA2,0xA3}
     assert "SENSEI8" in sim.console
     print("PASS: P1A three-pattern MOD -> 192 rows -> DOC RAM -> 6502 simulated playback")
