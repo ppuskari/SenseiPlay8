@@ -57,7 +57,7 @@ def run():
     print("PASS: P1C 128-row FX demo, frequency/volume/retrigger timeline, 6502 hooks")
     original=make_p1()
     normal_bank,normal_rows,warnings,_=convert(original)
-    p1b_bank,p1b_rows,_,_,_=convert_flow(original)
+    p1b_bank,p1b_rows,_=convert_flow(original)
     p1c_bank,p1c_rows,p1c_fx,trace,_=preprocess(original)
     assert not warnings
     assert normal_rows==p1b_rows==p1c_rows
