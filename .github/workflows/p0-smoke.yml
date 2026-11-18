@@ -42,6 +42,11 @@ jobs:
           python tests/test_p1.py
       - name: Validate P1B pattern flow and software DOC playback
         run: python tests/test_p1b.py
+      - name: Build and validate P1C synthetic tracker effects
+        run: |
+          python tools/make_p1c_effects_demo.py
+          python tools/p1c_effects.py assets/sensei8-p1c-effects-demo.mod --out dist/SENSEI8-P1C-FXDEMO.SYSTEM
+          python tests/test_p1c.py
       - name: Package recovered P0 hardware test assets
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
@@ -52,6 +57,7 @@ jobs:
             dist/SENSEI8-P0L4.SYSTEM
             dist/SENSEI8-P0P8.SYSTEM
             dist/SENSEI8-P1A.SYSTEM
+            dist/SENSEI8-P1C-FXDEMO.SYSTEM
             assets/sensei8-p1-three-pattern.mod
             assets/sensei8-original-demo.mod
           if-no-files-found: error
