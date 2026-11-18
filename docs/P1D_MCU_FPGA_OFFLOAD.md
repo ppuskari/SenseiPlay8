@@ -84,3 +84,41 @@ demo. On paired P1D hardware, use Native DOC audio mode A2 and Slot 4.
   simultaneously.
 - Old P1B Waltz / P1C MOD builds are preserved.
 - The feature branches are kept separate until paired hardware validation.
+
+## Prebuild asset steps for Mockingboard audio
+
+The FPGA firmware branch contains **both** the Sensei8 native-DOC path
+and the original Enhanced Mockingboard music/speech personalities. Before
+running Gowin, regenerate/verify the two local audio ROMs from the separate
+`a2fpga-sensei-p1d` checkout (NOT from the SenseiPlay8 repo):
+
+```powershell
+cd C:\AppleIIgsDev_02\a2fpga-sensei-p1d
+py -3 tools\extract_synthlab_piano.py --download
+py -3 tools\extract_synthlab_piano.py --check
+py -3 tools\generate_ssi263_voice.py
+py -3 tools\generate_ssi263_voice.py --check
+py -3 tools\generate_ssi263_p8_roms.py --check
+py -3 tools\generate_ssi263_p9_nas_rom.py --check
+py -3 tools\generate_ssi263_p9_output_fir.py --check
+```
+
+Authentic Apple SynthLab sustain bank: `boards/a2n20v2-Enhanced/hdl/
+piano_multisustain.mem`, 5632 PCM bytes as 1408 ROM words, packed FNV32
+`170BB8B3`. The script needs access to the System 6.0.4 SynthLab `.po`
+disk, automatically downloaded or supplied using `--disk <local po>`.
+Copyrighted PCM must remain local and is not committed.
+
+Legacy SSI263 approximate FPGA voice bank:
+`boards/a2n20v2-Enhanced/hdl/ssi263_voice.mem` (8192 bytes,
+64 phoneme waveforms). **The actual P10 Hybrid speech voice comes from
+the BL616 Pico-derived C synthesizer and not this legacy waveform ROM.**
+The P8/P9 .mem ROMs are committed and validated with `--check`.
+
+The FX one-shot bank builder exists but has not been integrated into
+the P1D active Sound GLU preload. See the hardware repo's
+`boards/a2n20v2-Enhanced/docs/SENSEI_P1D_PROTOCOL.md` for details.
+
+**This is a required prerequisite for a complete Enhanced build even
+though Sensei8 P1D Native DOC playback uses its own four 256-byte
+sample tables uploaded by the IIe.**
