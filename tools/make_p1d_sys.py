@@ -31,6 +31,13 @@ def create(p0: bytes):
         if len(cycle) != 256 or 0 in cycle:
             raise ValueError("Unexpected P0 DOC waveform")
         player[begin:begin+256] = cycle[::8]*8
+    # Display the new offload personality, with identical byte count so
+    # no existing 6502 symbol address changes.
+    title = b"SENSEI8 P0 - FOUR CHANNEL DOC"
+    new_title = b"SENSEI8 P1D MCU DOC TRACKER".ljust(len(title),b" ")
+    if len(new_title)!=len(title) or player.count(title)!=1:
+        raise ValueError("P0 title string changed")
+    player = bytearray(player.replace(title,new_title))
     if player[0x2C:0x2F] != bytes.fromhex("20 33 21"):
         raise ValueError("Unexpected original JSR PrepareSong callsite")
     controller_address = origin + len(player)
