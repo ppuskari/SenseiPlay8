@@ -51,6 +51,8 @@ jobs:
         run: |
           python tools/make_p1d_sys.py
           python tests/test_p1d.py
+      - name: Validate P1E real-time MOD preloaders and local-only song assets
+        run: python tests/test_p1e.py
       - name: Package recovered P0 hardware test assets
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
