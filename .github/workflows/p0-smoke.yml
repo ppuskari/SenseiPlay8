@@ -47,6 +47,10 @@ jobs:
           python tools/make_p1c_effects_demo.py
           python tools/p1c_effects.py assets/sensei8-p1c-effects-demo.mod --out dist/SENSEI8-P1C-FXDEMO.SYSTEM
           python tests/test_p1c.py
+      - name: Validate P1D IIe-to-MCU offload control
+        run: |
+          python tools/make_p1d_sys.py
+          python tests/test_p1d.py
       - name: Package recovered P0 hardware test assets
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
@@ -58,6 +62,7 @@ jobs:
             dist/SENSEI8-P0P8.SYSTEM
             dist/SENSEI8-P1A.SYSTEM
             dist/SENSEI8-P1C-FXDEMO.SYSTEM
+            dist/SENSEI8-P1D.SYSTEM
             assets/sensei8-p1-three-pattern.mod
             assets/sensei8-original-demo.mod
           if-no-files-found: error
