@@ -1,0 +1,42 @@
+{
+  "README.md": {
+    "size": 7495,
+    "sha256": "ba88ceafe104c9130a7b27d64617fec1ba01223c3de3ec226c6c305f0747dcb2"
+  },
+  "BASELINE.md": {
+    "size": 1045,
+    "sha256": "0e34a73b848f64536cc6596dc1b14383351934cec1a7efbfbbf90398fd1a98a5"
+  },
+  "src/sensei8.s": {
+    "size": 10610,
+    "sha256": "aa08298b43fe060e4393f844e929e16763b10cb15ee97d48819aa565f0ca7129"
+  },
+  "src/module_data.s": {
+    "size": 10263,
+    "sha256": "c55456a326aba16080551c391b276dd5ae0237d32b43e935e2b4c1f8f8f6c5a7"
+  },
+  "tools/mod_to_s8m.py": {
+    "size": 9997,
+    "sha256": "3b85a0a789aaabbdb2c0f144ac940dda603fc12ed26645b98ff5bd120ba1035e"
+  },
+  "tools/make_demo_mod.py": {
+    "size": 2004,
+    "sha256": "475ad479f314b4dc058d13ccb629e7723e4ba4ac82500837848a77cdcdeb9f35"
+  },
+  "tools/s8asm.py": {
+    "size": 8811,
+    "sha256": "a35e90e6a67858c68d87d3777c2a4162113ff72d7e6837c31708b70b0834b439"
+  },
+  "tests/test_player.py": {
+    "size": 7518,
+    "sha256": "b6e19d05ea4f76dfa1f015adafb8663e33cd3c49f363382b7f54e1141cd3fbd6"
+  },
+  "assets/sensei8-original-demo.mod": {
+    "size": 3132,
+    "sha256": "2a09f95c6558375a49718cb3b45b76b01c1ca34067f46e3c614dbaf9d9f5a90d"
+  },
+  "build/SENSEI8.BIN": {
+    "size": 3544,
+    "sha256": "4731bd6b44d4270ab9d50c28fad23a4aaf13a852403af0f91158ae2e640a1152"
+  }
+}

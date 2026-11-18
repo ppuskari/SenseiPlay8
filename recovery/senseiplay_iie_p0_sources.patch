@@ -1,0 +1,1400 @@
+diff --git a/apps/senseiplay-iie/.gitignore b/apps/senseiplay-iie/.gitignore
+new file mode 100644
+index 0000000..8cbfc39
+--- /dev/null
++++ b/apps/senseiplay-iie/.gitignore
+@@ -0,0 +1,3 @@
++__pycache__/
++*.pyc
++build/
+diff --git a/apps/senseiplay-iie/MANIFEST.json b/apps/senseiplay-iie/MANIFEST.json
+new file mode 100644
+index 0000000..ba21672
+--- /dev/null
++++ b/apps/senseiplay-iie/MANIFEST.json
+@@ -0,0 +1,42 @@
++{
++  "README.md": {
++    "size": 7495,
++    "sha256": "ba88ceafe104c9130a7b27d64617fec1ba01223c3de3ec226c6c305f0747dcb2"
++  },
++  "BASELINE.md": {
++    "size": 1045,
++    "sha256": "0e34a73b848f64536cc6596dc1b14383351934cec1a7efbfbbf90398fd1a98a5"
++  },
++  "src/sensei8.s": {
++    "size": 10610,
++    "sha256": "aa08298b43fe060e4393f844e929e16763b10cb15ee97d48819aa565f0ca7129"
++  },
++  "src/module_data.s": {
++    "size": 10263,
++    "sha256": "c55456a326aba16080551c391b276dd5ae0237d32b43e935e2b4c1f8f8f6c5a7"
++  },
++  "tools/mod_to_s8m.py": {
++    "size": 9997,
++    "sha256": "3b85a0a789aaabbdb2c0f144ac940dda603fc12ed26645b98ff5bd120ba1035e"
++  },
++  "tools/make_demo_mod.py": {
++    "size": 2004,
++    "sha256": "475ad479f314b4dc058d13ccb629e7723e4ba4ac82500837848a77cdcdeb9f35"
++  },
++  "tools/s8asm.py": {
++    "size": 8811,
++    "sha256": "a35e90e6a67858c68d87d3777c2a4162113ff72d7e6837c31708b70b0834b439"
++  },
++  "tests/test_player.py": {
++    "size": 7518,
++    "sha256": "b6e19d05ea4f76dfa1f015adafb8663e33cd3c49f363382b7f54e1141cd3fbd6"
++  },
++  "assets/sensei8-original-demo.mod": {
++    "size": 3132,
++    "sha256": "2a09f95c6558375a49718cb3b45b76b01c1ca34067f46e3c614dbaf9d9f5a90d"
++  },
++  "build/SENSEI8.BIN": {
++    "size": 3544,
++    "sha256": "4731bd6b44d4270ab9d50c28fad23a4aaf13a852403af0f91158ae2e640a1152"
++  }
++}
+diff --git a/apps/senseiplay-iie/assets/sensei8-original-demo.mod b/apps/senseiplay-iie/assets/sensei8-original-demo.mod
+new file mode 100644
+index 0000000000000000000000000000000000000000..21defa9c8e578f420191b4856fab2db294d0e296
+GIT binary patch
+literal 3132
+zcmeH{?N3s16vr<ZOUG=?LTik5r`Dh*nq$mxF7PQ$o-Y_fEv;#!sB67;`46;~f}$-S
+zvKYxlK&rK-Wn-vg%$6>3MvZc;2dl9dE5lrehu)-b<VC&6@0;J*Ip_1+J>TE&cd;@N
+zR#sVnmWvg#oRSK@2$kevm7+3avpSJHNOsC)m3+}j!Ji%Rszf2c{wzhP7+YK>5NzJ~
+zcXf-(PHM-29S1f!K)A9g^_LSuRuzkYQxIYyiX<uF$FRuT_7@O3C<tL4MTkFuf13c0
+z0q+Ff0Q^P*JP&vr_|80pKu>_D1K$BW7kJ+Gd1M243<VE>#}eS*0?z{834BKa{37sl
+z;Bnyb?ejb55B~kf=Z_?jlF6x*z100QI+}HeaU>`A7@Kpvu;@f_X?evdfk-056sMJ{
+znz}Rf4d>1`HeFDwFE+QdXf&;@t!*(uq|vmrG+$J!FElltKi5!yrmjY%JgvZF5|Q9k
+zMR{rQiK4>e9QLu?oFj}wSty;hpSqWlN=_yvAwR?4L&3o3)%X4t->a8Piwn=6xm`0(
+z$J56Xj~+g_H*Os>o9-G7cSddv4G!GA(ch=n_x9*?T5WfCcUMdhX|+0CPp@9z*MH;Y
+zz~IoWkvj(CU6XmtI)3lL!$%X3pE{f~F88zN3yVuHU-?%2?^izuf}!u>p9pamX?F@a
+zbq^(NUwXy?8vP)enSGeSJPJPKvpEG3C-_k-s)S-GCa+eiYU|E6fD!6uO<Vh=%a_{Q
+zG|g%lyWwnItx8!f$E0FmRdi@ROwBFeu=8Q=qfEx(>`e3^opvB2eP0@7PbxWOH)$6U
+z*;o&+eG3J@2EKgy_~D&@<&E#PcX`S40(_WryJjO!Jc(Ly-)^&*@lm7U_Q>!c7@_ac
+zc3r=A_1g6=ZI2$t9vmLIZ7`1FW{b^!KRWain0k8F<(`ANUwD?5y{~<5R{ZZieEjq!
+z@HH6vwiaIBh#%oUTjEFf&lZG4rch~UHj|al;TG{qB6nUWmPn*h8AvLXN+e>jSQHn8
+z(GrHq<qCzOIwpwZatwp+t(xN-K}i^S3njcFE+?PG%tmQc3Ymn2LxEMl&+D0=b4@#@
+zCL?#=ZnIh~mNAgUVzF9nHrsey5JpR8Gme`~rqP%n!f~@1y0>bMZv-WK<Sk52Ii_86
+N^B%9yzZwXIe*s2NJp=#%
+
+literal 0
+HcmV?d00001
+
+diff --git a/apps/senseiplay-iie/build/SENSEI8.BIN b/apps/senseiplay-iie/build/SENSEI8.BIN
+new file mode 100644
+index 0000000000000000000000000000000000000000..4b664af92d51946789f6722cf4cbdeee6c873c38
+GIT binary patch
+literal 3544
+zcmc&zYfKYa7#&di_@Pz>EE47RqAUotEvO;J2Z%f*O%V|xie?PUDxxlt5GAPT3L}p?
+zSV0t*5DS87HG?Zbq8Q>Jt^wsSwV(}(f)A{`MEBROakIBGO%{on-9U)nk2~ky@7{a9
+zbLM{5Y5|!ItA%6^tQL_3tQM1}AQeM{eE|Fl^aAh;P{#t$1i%{r0%cSIoUMan?jTYI
+zW<uZrf187rm>C^9*iiu03IKk9R5m08R1PGB6afhlbqW$<yb@~+hhuZZ+QM82M!wYK
+zLK`yz3cuJBKYlYo-KSeOF$<~R>DFjQLOq~cLm4sELbp~j&Qd%GKYfoTn`qoLm!xSE
+zMmE!xSb;RfU^F>_24L$0%tu4NX+6TY>1S>WI?zm;tc1wqONgoSkj#VB1xV&YDi6-i
+zhhrWF?1l*4IUr)32gGO*>B@&4c~Ct|_Ad=?DkTIaySj6bEPzxABy|u+M+M|*I3Per
+zg_RgPC1DF%EM&(s?5JnQv+P*Jj>V8FhQ3Z?0&rEPz9_R#oX2K>KV{NtL5h$N=+Sky
+zzL`u7&WfXopxCYtO|(Yp4CEkfr1UH_Qlw)E7^y-B3^r0{9nfGz7x?~dHwE1gY&2nZ
+zSaTX8ehGZY{Do8QwDL0=B%g5#qb0K_2_1w>zj7HB_qEZZcx;#^Hf(bc*rEh-5FQ=3
+z6@*5HXf$DJuqiqeiw)ZbLIT3KM1+8lxJ{d*!M13i3E8%Jdl;L>CPpxZ%@kIkRXygE
+zi8*0<iBk;bZ2xR@nqglQPCPMwKKZ2RCdZk_aqi?eRny8TY~wgfInJLrP6@{;8n0_2
+zp1e+>mE)}7I1g}~pRoV-b_xZ3;y7<|oS7V_^?z{k>f|p-;>5n8HjXoo<7}HMCx1aI
+zj`I!2S;}$VoK{ZZMvn6n$63K~R&bpB4o!Si<LA6OC*Pk_C}?{6lfNLo{^WOPyq6O(
+z?@7_5`;+%t{v=<2@;fw9+xR&@=cM~{3I$D1fASZ^*Pr|jjrVdQ<~^y+Ch~NozPO~c
+ztlV(9+IW?^ext7b_MOJN_wGMvdDzy$JhpT{we~#gebLwd>h;@!cQ)Jm!J(ny;gOM%
+zQ7#Y~9v&JRd~dV88+iNrRe#@$-e*15r`?vvOh?<pmIwFm-EF*cyT0zmb?U0I`m&+C
+zthA(9PwMiBZ0+%^qZ#RG2UGVYC*iwxCTx$5iB?BNgoTEzU%Mt~^~wO{3b~)JkM}Y!
+z2t1c8_E_XDl`eF1b#-xBuwcP_E)a5YadmZDD3!V|@>smY6F{$J-afv5@)gQ}m8*l+
+ztX&@x8Ws_yj*f}lp0INlo|L>V^<Y|h#?h?f+LJj%ZoZBz)EAvQf8k<T`6WYT)fJ=Z
+z8uFpGuKt$Yi6+*HN9~<vOV<-?&-31w{m2O0;PB{&kAHmpFgiSFL$do{_CD{iKIyWU
+zJKG<zqMMNFhFkS@wMh3hlkrMbrQuR}*~JUz&lTwlNnL&}k#kae;#gMZk&N`iX@?H%
+zPuZKCv<KgvxFaDx4*8%_M@8D5*uYw`Do~}6`!DzLUg{<DL`F#6T;|W4JA3ZD`7Ul!
+zB->Nwwba{ZxxZYY3S7mC-hfnxM@FeNNOxR(!j8n<_@1QXy(#+-97;Q!o^d2I>(~j$
+zFZ^yF$1nVDA1$HNmy{W*Of|Lj4UKfO{mr*`GK|^$7=_tvW|+>-&JIT)$fhiouCDIx
+z?k8Lz)YWCNpxxiv?6?S}+U>p2OgA>v*VdS-3}q#H9ih$2NJ~w|6XUmPqQXOi*V*5E
+zph~G!C|00QC=^PiN~H>L1cGczF8BBM^YdHI1w#J*ayi=lt<8>$P%6;g3+sYI!=p4?
+N;}h}Z)U=GOe*lWJS)>2}
+
+literal 0
+HcmV?d00001
+
+diff --git a/apps/senseiplay-iie/src/module_data.s b/apps/senseiplay-iie/src/module_data.s
+new file mode 100644
+index 0000000..8f33e73
+--- /dev/null
++++ b/apps/senseiplay-iie/src/module_data.s
+@@ -0,0 +1,188 @@
++********************************************************************************
++* GENERATED by tools/mod_to_s8m.py, DO NOT EDIT BY HAND.
++* Copyright/source MOD samples remain local. Do not commit others' PCM.
++********************************************************************************
++SongRowCount    dw    64
++SampleBankLen   dw    1024
++SongRows
++                hex   07A10000009000017900010090100151
++                hex   00020090100142010300900001070000
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000070000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000000070000000000000000
++                hex   00000000000000000000000000000000
++                hex   0000000008B500000090000188000100
++                hex   9010015B000200901001310103009000
++                hex   01070000000000000000000000000000
++                hex   00000000000000000000000000000700
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000700000000
++                hex   00000000000000000000000000000000
++                hex   000000000000000007CC000000900001
++                hex   98000100901001660002009010011001
++                hex   03009000010800000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000700000000000000000000000000
++                hex   00000000000000000000000000000007
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000007D80000
++                hex   00900001A10001009010016C00020090
++                hex   1001F200030090000107000000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000008000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000007000000000000000000000000
++                hex   00000000000000000000000000000000
++                hex   07F2000000900001B500010090100179
++                hex   000200901001D8000300900001070000
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000070000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000000080000000000000000
++                hex   00000000000000000000000000000000
++                hex   000000000710010000900001CC000100
++                hex   90100188000200901001CC0003009000
++                hex   01070000000000000000000000000000
++                hex   00000000000000000000000000000700
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000700000000
++                hex   00000000000000000000000000000000
++                hex   00000000000000000831010000900001
++                hex   E400010090100198000200901001B500
++                hex   03009000010700000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000700000000000000000000000000
++                hex   00000000000000000000000000000007
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000007420100
++                hex   00900001F2000100901001A100020090
++                hex   1001A100030090000108000000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000007000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000007000000000000000000000000
++                hex   00000000000000000000000000000000
++                hex   07A10000009000017900010090100151
++                hex   00020090100142010300900001070000
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000080000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000000070000000000000000
++                hex   00000000000000000000000000000000
++                hex   0000000007B500000090000188000100
++                hex   9010015B000200901001310103009000
++                hex   01070000000000000000000000000000
++                hex   00000000000000000000000000000700
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000800000000
++                hex   00000000000000000000000000000000
++                hex   000000000000000007CC000000900001
++                hex   98000100901001660002009010011001
++                hex   03009000010700000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000700000000000000000000000000
++                hex   00000000000000000000000000000007
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000008D80000
++                hex   00900001A10001009010016C00020090
++                hex   1001F200030090000107000000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000007000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000007000000000000000000000000
++                hex   00000000000000000000000000000000
++                hex   07F2000000900001B500010090100179
++                hex   000200901001D8000300900001080000
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000070000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000000070000000000000000
++                hex   00000000000000000000000000000000
++                hex   000000000710010000900001CC000100
++                hex   90100188000200901001CC0003009000
++                hex   01070000000000000000000000000000
++                hex   00000000000000000000000000000800
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000700000000
++                hex   00000000000000000000000000000000
++                hex   00000000000000000731010000900001
++                hex   E400010090100198000200901001B500
++                hex   03009000010700000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000700000000000000000000000000
++                hex   00000000000000000000000000000008
++                hex   00000000000000000000000000000000
++                hex   00000000000000000000000007420100
++                hex   00900001F2000100901001A100020090
++                hex   1001A100030090000107000000000000
++                hex   00000000000000000000000000000000
++                hex   00000000000007000000000000000000
++                hex   00000000000000000000000000000000
++                hex   00000007000000000000000000000000
++                hex   00000000000000000000000000000000
++SampleBank
++                hex   808385888B8D909395989B9DA0A3A5A8
++                hex   AAADAFB1B4B6B9BBBDBFC2C4C6C8CACC
++                hex   CED0D2D3D5D7D8DADBDDDEE0E1E2E3E5
++                hex   E6E7E8E8E9EAEBEBECECEDEDEDEEEEEE
++                hex   EEEEEEEEEDEDEDECECEBEBEAE9E8E8E7
++                hex   E6E5E3E2E1E0DEDDDBDAD8D7D5D3D2D0
++                hex   CECCCAC8C6C4C2BFBDBBB9B6B4B1AFAD
++                hex   AAA8A5A3A09D9B989593908D8B888583
++                hex   807D7B787573706D6B686563605D5B58
++                hex   5653514F4C4A474543413E3C3A383634
++                hex   32302E2D2B292826252322201F1E1D1B
++                hex   1A191818171615151414131313121212
++                hex   12121212131313141415151617181819
++                hex   1A1B1D1E1F202223252628292B2D2E30
++                hex   323436383A3C3E414345474A4C4F5153
++                hex   56585B5D606365686B6D707375787B7D
++                hex   8082848587898B8D8E9092949697999B
++                hex   9D9FA0A2A4A6A8A9ABADAFB1B2B4B6B8
++                hex   B9BBBDBFC1C2C4C6C8CACBCDCFD1D3D4
++                hex   D6D8DADCDDDFE1E3E5E6E8EAECEEEFF1
++                hex   F3F1EFEEECEAE8E6E5E3E1DFDDDCDAD8
++                hex   D6D4D3D1CFCDCBCAC8C6C4C2C1BFBDBB
++                hex   BAB8B6B4B2B1AFADABA9A8A6A4A2A09F
++                hex   9D9B9997969492908E8D8B8987858482
++                hex   807E7C7B7977757372706E6C6A696765
++                hex   6361605E5C5A58575553514F4E4C4A48
++                hex   474543413F3E3C3A38363533312F2D2C
++                hex   2A28262423211F1D1B1A18161412110F
++                hex   0D0F11121416181A1B1D1F2123242628
++                hex   2A2C2D2F31333536383A3C3E3F414345
++                hex   46484A4C4E4F51535557585A5C5E6061
++                hex   636567696A6C6E7072737577797B7C7E
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   12121212121212121212121212121212
++                hex   80858B90959BA0A4A9AEB2B6BABDC0C3
++                hex   C6C8CACCCDCFD0D0D1D1D2D2D2D2D1D1
++                hex   D1D0D0CFCFCFCECECECECECECECECFCF
++                hex   CFD0D0D1D1D2D3D3D4D4D5D5D5D6D6D6
++                hex   D6D6D6D6D5D5D5D4D4D3D3D2D1D1D0D0
++                hex   CFCFCFCECECECECECECECECFCFCFD0D0
++                hex   D1D1D1D2D2D2D2D1D1D0D0CFCDCCCAC8
++                hex   C6C3C0BDBAB6B2AEA9A4A09B95908B85
++                hex   807B75706B65605C57524E4A4643403D
++                hex   3A383634333130302F2F2E2E2E2E2F2F
++                hex   2F303031313132323232323232323131
++                hex   3130302F2F2E2D2D2C2C2B2B2B2A2A2A
++                hex   2A2A2A2A2B2B2B2C2C2D2D2E2F2F3030
++                hex   31313132323232323232323131313030
++                hex   2F2F2F2E2E2E2E2F2F30303133343638
++                hex   3A3D4043464A4E52575C60656B70757B
+diff --git a/apps/senseiplay-iie/src/sensei8.s b/apps/senseiplay-iie/src/sensei8.s
+new file mode 100644
+index 0000000..92513a9
+--- /dev/null
++++ b/apps/senseiplay-iie/src/sensei8.s
+@@ -0,0 +1,349 @@
++********************************************************************************
++* Sensei8 P0 - four-channel 65C02 MOD proof-of-playback for a2fpga Enhanced
++* Based on SenseiPlay's tracker/DOC architecture; NEW 8-bit player code.
++* 6502-safe opcodes throughout, no 65816, GS toolsets, interrupts, or AUX RAM.
++* Copyright (c) 2026 Petar Puskarich / contributors, experimental prototype.
++*
++* Native DOC audio personality = 2; SLOT 4 $C0C0-$C0C9.
++* Playback requires an S8M0 module generated by tools/mod_to_s8m.py.
++* Assemble: merlin32 -V . src/sensei8.s
++* For P0 boot DOS 3.3 and BLOAD BIN at $2000, CALL 8192; any key stops.
++* DO NOT BLOAD over ProDOS 8 BASIC.SYSTEM at $2000 (it uses this RAM).
++********************************************************************************
++                org   $2000
++                typ   $06
++
++DOCCTL          equ   $C0C0
++DOCDATA         equ   $C0C1
++DOCPTR          equ   $C0C2
++DOCPTRHI        equ   $C0C3
++DOCID0          equ   $C0C4
++DOCID1          equ   $C0C5
++DOCID2          equ   $C0C6
++DOCMODE         equ   $C0C8
++RDVBL           equ   $C019
++KBD             equ   $C000
++KBDSTRB         equ   $C010
++COUT            equ   $FDED
++CROUT           equ   $FD8E
++ROWPTR          equ   $06
++BANKPTR         equ   $08
++
++Start           cld
++                lda   ROWPTR
++                sta   Saved06
++                lda   ROWPTR+1
++                sta   Saved07
++                lda   BANKPTR
++                sta   Saved08
++                lda   BANKPTR+1
++                sta   Saved09
++                lda   $C051            ; text mode
++                jsr   PrintTitle
++                jsr   ProbeDOC
++                bcc   ValidDOC
++                jsr   PrintNeedDOC
++                jmp   Finish
++ValidDOC        jsr   InitDOC
++                jsr   UploadSamples
++                jsr   PrepareSong
++MainLoop        lda   RowsLeft
++                ora   RowsLeft+1
++                beq   FinishedSong
++                jsr   PlayRow
++                jsr   WaitFrames
++                jsr   KeyPressed
++                bcs   FinishedSong
++                lda   RowsLeft
++                bne   RowDecLo
++                dec   RowsLeft+1
++RowDecLo        dec   RowsLeft
++                jmp   MainLoop
++FinishedSong    jsr   StopDOC
++Finish          lda   Saved06
++                sta   ROWPTR
++                lda   Saved07
++                sta   ROWPTR+1
++                lda   Saved08
++                sta   BANKPTR
++                lda   Saved09
++                sta   BANKPTR+1
++                rts
++
++PrintTitle      ldx   #$00
++PrTitleLoop     lda   TitleText,x
++                beq   PrTitleDone
++                ora   #$80
++                stx   PrintSavedX
++                jsr   COUT
++                ldx   PrintSavedX
++                inx
++                bne   PrTitleLoop
++PrTitleDone     jsr   CROUT
++                rts
++
++PrintNeedDOC    ldx   #$00
++PrFailLoop      lda   FailText,x
++                beq   PrFailDone
++                ora   #$80
++                stx   PrintSavedX
++                jsr   COUT
++                ldx   PrintSavedX
++                inx
++                bne   PrFailLoop
++PrFailDone      jsr   CROUT
++                rts
++
++* Detect a2fpga native DOC slot signature and current audio personality.
++* Carry clear only for A2 audio mode; A3 Shared can be supported later.
++ProbeDOC        lda   DOCID0
++                cmp   #$44             ; D
++                bne   ProbeFail
++                lda   DOCID1
++                cmp   #$4F             ; O
++                bne   ProbeFail
++                lda   DOCID2
++                cmp   #$43             ; C
++                bne   ProbeFail
++                lda   DOCMODE
++                cmp   #$A2             ; mode 2 = Native DOC
++                bne   ProbeFail
++                clc
++                rts
++ProbeFail       sec
++                rts
++
++* Y=register address, A=data; $C0C3 is kept at $00 for DOC registers.
++DOCWrite        sty   DOCPTR
++                sta   DOCDATA
++                rts
++
++InitDOC         lda   #$0F             ; DOC regs, global volume F
++                sta   DOCCTL
++                lda   #$00
++                sta   DOCPTRHI
++                ldx   #$00
++HaltInitLoop    txa
++                clc
++                adc   #$A0
++                tay
++                lda   #$01             ; halt before uploading samples
++                jsr   DOCWrite
++                inx
++                cpx   #$20             ; silence ALL 32 legacy voices
++                bne   HaltInitLoop
++                ldy   #$E1
++                lda   #$3E             ; 32 oscillators: native Tool222-like SR
++                jsr   DOCWrite
++                rts
++
++* SampleBank is a fully packed/ordered sound-RAM image with 0x80 gaps.
++* Memory upload via native GLU RAM auto-increment. Only bank 0 in P0.
++UploadSamples   lda   #$6F             ; RAM, AUTOINC, volume F
++                sta   DOCCTL
++                lda   #$00
++                sta   DOCPTR
++                sta   DOCPTRHI
++                lda   #<SampleBank
++                sta   BANKPTR
++                lda   #>SampleBank
++                sta   BANKPTR+1
++                lda   SampleBankLen
++                sta   BytesLeft
++                lda   SampleBankLen+1
++                sta   BytesLeft+1
++UploadLoop      lda   BytesLeft
++                ora   BytesLeft+1
++                beq   UploadDone
++                ldy   #$00
++                lda   (BANKPTR),y
++                sta   DOCDATA
++                inc   BANKPTR
++                bne   UploadNoCarry
++                inc   BANKPTR+1
++UploadNoCarry   lda   BytesLeft
++                bne   UploadDec
++                dec   BytesLeft+1
++UploadDec       dec   BytesLeft
++                jmp   UploadLoop
++UploadDone      lda   #$0F
++                sta   DOCCTL
++                lda   #$00
++                sta   DOCPTRHI
++                rts
++
++PrepareSong     lda   #<SongRows
++                sta   ROWPTR
++                lda   #>SongRows
++                sta   ROWPTR+1
++                lda   SongRowCount
++                sta   RowsLeft
++                lda   SongRowCount+1
++                sta   RowsLeft+1
++                rts
++
++* Each row: duration frames + 4 channel events (7 bytes each).
++* Event: FClo, FChi, WTP, RTS, volume, CTRL, flags.
++* flags: 0=unchanged, 1=retrigger, 2=cut (volume zero).
++PlayRow         ldy   #$00
++                lda   (ROWPTR),y
++                sta   FrameCount
++                inc   ROWPTR
++                bne   RowNoCarry
++                inc   ROWPTR+1
++RowNoCarry      ldx   #$00
++ReadChan        ldy   #$00
++                lda   (ROWPTR),y
++                sta   EvLo
++                iny
++                lda   (ROWPTR),y
++                sta   EvHi
++                iny
++                lda   (ROWPTR),y
++                sta   EvWTP
++                iny
++                lda   (ROWPTR),y
++                sta   EvRTS
++                iny
++                lda   (ROWPTR),y
++                sta   EvVol
++                iny
++                lda   (ROWPTR),y
++                sta   EvCtrl
++                iny
++                lda   (ROWPTR),y
++                sta   EvFlags
++                lda   EvFlags
++                and   #$01
++                beq   MaybeCut
++                jsr   StartVoice
++                jmp   NextChan
++MaybeCut        lda   EvFlags
++                and   #$02
++                beq   NextChan
++                jsr   CutVoice
++NextChan        clc
++                lda   ROWPTR
++                adc   #$07
++                sta   ROWPTR
++                bcc   ChanNoCarry
++                inc   ROWPTR+1
++ChanNoCarry     inx
++                cpx   #$04
++                bne   ReadChan
++                rts
++
++* X=channel. Halt/retrigger ensures each row's MOD note attacks.
++StartVoice      txa
++                clc
++                adc   #$A0
++                tay
++                lda   EvCtrl
++                ora   #$01
++                jsr   DOCWrite
++                txa
++                clc
++                adc   #$80
++                tay
++                lda   EvWTP
++                jsr   DOCWrite
++                txa
++                clc
++                adc   #$C0
++                tay
++                lda   EvRTS
++                jsr   DOCWrite
++                txa
++                tay
++                lda   EvLo
++                jsr   DOCWrite
++                txa
++                clc
++                adc   #$20
++                tay
++                lda   EvHi
++                jsr   DOCWrite
++                txa
++                clc
++                adc   #$40
++                tay
++                lda   EvVol
++                jsr   DOCWrite
++                txa
++                clc
++                adc   #$A0
++                tay
++                lda   EvCtrl
++                and   #$FE
++                jsr   DOCWrite
++                rts
++
++CutVoice        txa
++                clc
++                adc   #$40
++                tay
++                lda   #$00
++                jsr   DOCWrite
++                rts
++
++* 60 Hz Apple IIe VBL. Module preprocessor assigns each row 7/8 frames
++* at default ProTracker speed=6 BPM=125 (7.2 frames average).
++* P0 has no per-tick slide/vibrato/arpeggio updates.
++WaitFrames      ldx   FrameCount
++                beq   WaitDone
++WaitFrameLoop   jsr   WaitOneFrame
++                dex
++                bne   WaitFrameLoop
++WaitDone        rts
++WaitOneFrame    lda   RDVBL
++                bmi   WaitOneFrame
++VBLStart        lda   RDVBL
++                bpl   VBLStart
++                rts
++
++* Stop on any Apple II key for P0; TAB remains MCU menu toggle.
++KeyPressed      lda   KBD
++                bpl   NoKey
++                lda   KBDSTRB
++                sec
++                rts
++NoKey           clc
++                rts
++
++StopDOC         lda   #$0F
++                sta   DOCCTL
++                lda   #$00
++                sta   DOCPTRHI
++                ldx   #$00
++StopLoop        jsr   CutVoice
++                txa
++                clc
++                adc   #$A0
++                tay
++                lda   #$01
++                jsr   DOCWrite
++                inx
++                cpx   #$20             ; leave shared DOC clean on exit
++                bne   StopLoop
++                rts
++
++TitleText       asc   'SENSEI8 P0 - FOUR CHANNEL DOC',00
++FailText        asc   'SET A2FPGA AUDIO TO NATIVE DOC',00
++Saved06         db    0
++Saved07         db    0
++Saved08         db    0
++Saved09         db    0
++PrintSavedX     db    0
++BytesLeft       dw    0
++RowsLeft        dw    0
++FrameCount      db    0
++EvLo            db    0
++EvHi            db    0
++EvWTP           db    0
++EvRTS           db    0
++EvVol           db    0
++EvCtrl          db    0
++EvFlags         db    0
++
++* Generated from a real 4-channel MOD by the host converter.
++                put   module_data
+diff --git a/apps/senseiplay-iie/tests/test_player.py b/apps/senseiplay-iie/tests/test_player.py
+new file mode 100644
+index 0000000..9e33a6e
+--- /dev/null
++++ b/apps/senseiplay-iie/tests/test_player.py
+@@ -0,0 +1,182 @@
++#!/usr/bin/env python3
++"""Executable P0 source/6502 register-bus smoke, not a physical IIe test."""
++import sys
++from pathlib import Path
++root=Path(__file__).resolve().parents[1]
++sys.path.insert(0,str(root/'tools'))
++from s8asm import assemble, OPCODES
++from mod_to_s8m import convert, read_mod, pitch_to_fc, emit, ModError
++from make_demo_mod import make
++
++
++class Tiny6502:
++    """Narrow emulation of the exact opcodes Sensei8 uses; fails on any other."""
++    def __init__(self, binary):
++        self.mem=bytearray(65536)
++        self.mem[0x2000:0x2000+len(binary)]=binary
++        self.pc=0x2000; self.a=0; self.x=0; self.y=0; self.sp=0xFD
++        self.c=0; self.z=0; self.n=0; self.steps=0; self.finished=False
++        self.ctl=0x0F; self.ptr=0; self.hi=0
++        self.ram=bytearray(65536); self.regs={}; self.writes=[]
++        self.upload_count=0; self.run_events=[]; self.console=''
++        self.rev={code:(mn,mode) for mn,modes in OPCODES.items() for mode,code in modes.items()}
++        # CALL $2000 entered from BASIC; stack RTS returns to 0x0000.
++        self.mem[0x01FE]=0xFF; self.mem[0x01FF]=0xFF
++        self.sp=0xFD
++
++    def read(self,addr):
++        addr&=0xffff
++        if addr==0xC0C4: return 0x44
++        if addr==0xC0C5: return 0x4F
++        if addr==0xC0C6: return 0x43
++        if addr==0xC0C8: return 0xA2
++        if addr==0xC019: return 0x80 if self.steps%160>=120 else 0
++        if addr==0xC000: return 0
++        return self.mem[addr]
++
++    def write(self,addr,value):
++        addr&=0xffff; value&=255
++        if addr==0xC0C0:
++            self.ctl=value
++        elif addr==0xC0C2:
++            self.ptr=(self.ptr&0xFF00)|value
++        elif addr==0xC0C3:
++            self.ptr=(self.ptr&0x00FF)|(value<<8)
++        elif addr==0xC0C1:
++            if self.ctl & 0x40:
++                self.ram[self.ptr]=value
++                self.upload_count+=1
++                if self.ctl & 0x20: self.ptr=(self.ptr+1)&65535
++            else:
++                self.regs[self.ptr]=value
++                self.writes.append((self.ptr,value))
++                if 0xA0<=self.ptr<=0xA3 and not (value & 1):
++                    self.run_events.append((self.ptr,value))
++        elif addr in (0xC010,0xC051): pass
++        else: self.mem[addr]=value
++
++    def f(self,v):
++        v&=255
++        self.z=int(v==0); self.n=(v>>7)&1
++        return v
++
++    def pop(self):
++        self.sp=(self.sp+1)&255
++        return self.read(0x0100+self.sp)
++
++    def push(self,v):
++        self.write(0x0100+self.sp,v)
++        self.sp=(self.sp-1)&255
++
++    def step(self):
++        if self.finished:return
++        self.steps+=1
++        op=self.read(self.pc); self.pc=(self.pc+1)&65535
++        if op not in self.rev: raise AssertionError(f'unsupported opcode {op:02X} at {self.pc-1:04X}')
++        mn,mode=self.rev[op]
++        if mode=='imp': value=0; addr=None
++        elif mode in ('imm','rel'):
++            value=self.read(self.pc); self.pc=(self.pc+1)&65535; addr=None
++        elif mode=='zp':
++            addr=self.read(self.pc); self.pc=(self.pc+1)&65535; value=self.read(addr)
++        elif mode=='zpx':
++            addr=(self.read(self.pc)+self.x)&255; self.pc=(self.pc+1)&65535; value=self.read(addr)
++        elif mode in ('abs','absx','absy'):
++            lo=self.read(self.pc); hi=self.read(self.pc+1); self.pc=(self.pc+2)&65535
++            addr=((hi<<8)|lo)+(self.x if mode=='absx' else self.y if mode=='absy' else 0)
++            addr&=65535; value=self.read(addr)
++        elif mode=='indy':
++            zp=self.read(self.pc); self.pc=(self.pc+1)&65535
++            addr=(self.read(zp)|self.read((zp+1)&255)<<8)+self.y
++            addr&=65535; value=self.read(addr)
++        else: raise AssertionError(mode)
++        if mn=='lda':self.a=self.f(value)
++        elif mn=='ldx':self.x=self.f(value)
++        elif mn=='ldy':self.y=self.f(value)
++        elif mn=='sta':self.write(addr,self.a)
++        elif mn=='stx':self.write(addr,self.x)
++        elif mn=='sty':self.write(addr,self.y)
++        elif mn=='inx':self.x=self.f(self.x+1)
++        elif mn=='iny':self.y=self.f(self.y+1)
++        elif mn=='dex':self.x=self.f(self.x-1)
++        elif mn=='txa':self.a=self.f(self.x)
++        elif mn=='tax':self.x=self.f(self.a)
++        elif mn=='tay':self.y=self.f(self.a)
++        elif mn=='clc':self.c=0
++        elif mn=='sec':self.c=1
++        elif mn=='cld':pass
++        elif mn=='pha':self.push(self.a)
++        elif mn=='pla':self.a=self.f(self.pop())
++        elif mn=='and':self.a=self.f(self.a&value)
++        elif mn=='ora':self.a=self.f(self.a|value)
++        elif mn=='adc':
++            result=self.a+value+self.c;self.c=int(result>255);self.a=self.f(result)
++        elif mn=='cmp':
++            result=self.a-value;self.c=int(result>=0);self.f(result)
++        elif mn=='cpx':
++            result=self.x-value;self.c=int(result>=0);self.f(result)
++        elif mn=='inc':self.write(addr,self.f(value+1))
++        elif mn=='dec':self.write(addr,self.f(value-1))
++        elif mn=='jmp':self.pc=addr
++        elif mn=='jsr':
++            if addr==0xFDED:
++                self.console+=chr(self.a&127)
++            elif addr==0xFD8E:
++                self.console+='\n'
++            else:
++                ret=(self.pc-1)&65535
++                self.push((ret>>8)&255);self.push(ret&255)
++                self.pc=addr
++        elif mn=='rts':
++            lo=self.pop();hi=self.pop();ret=((hi<<8)|lo)
++            self.pc=(ret+1)&65535
++            if self.pc==0: self.finished=True
++        elif mn in ('beq','bne','bcc','bcs','bpl','bmi'):
++            take={'beq':self.z==1,'bne':self.z==0,'bcc':self.c==0,
++                  'bcs':self.c==1,'bpl':self.n==0,'bmi':self.n==1}[mn]
++            if take:self.pc=(self.pc+(value-256 if value>127 else value))&65535
++        else: raise AssertionError(mn)
++
++    def run(self,limit=1000000):
++        while not self.finished and self.steps<limit:self.step()
++        assert self.finished, f'6502 did not return to BASIC after {self.steps} steps, PC={self.pc:04X}'
++
++
++def test_good():
++    orders, patterns, instruments=read_mod(make())
++    assert len(orders)==1 and len(patterns)==1024
++    assert instruments[0].repeat_length==256
++    bank,rows,warnings,catalog=convert(make())
++    assert len(bank)==1024 and len(rows)==64*29
++    assert not warnings, warnings
++    assert [catalog[i][0] for i in range(1,5)]==[0,1,2,3]
++    assert [rows[n*29] for n in range(5)]==[7,7,7,7,8]
++    assert pitch_to_fc(428)==161
++    assert 'SongRows' in emit(bank,rows)
++    origin,binary,sym=assemble(root/'src/sensei8.s')
++    assert origin==0x2000 and binary[:1]==b'\xD8'
++    assert origin+len(binary)<0x9000
++    emu=Tiny6502(binary)
++    emu.run()
++    assert emu.upload_count==len(bank),(emu.upload_count,len(bank))
++    assert emu.ram[:len(bank)]==bank
++    assert (0xE1,0x3E) in emu.writes
++    assert len(emu.run_events)==64
++    assert {x[0] for x in emu.run_events}=={0xA0,0xA1,0xA2,0xA3}
++    assert 'SENSEI8' in emu.console
++    assert emu.regs[0x40]==0 and emu.regs[0x43]==0  # voices silenced on exit
++    print('PASS: MOD -> 64 rows -> 6502 BIN -> 1024 DOC sample uploads -> 64 voice retriggers -> return to BASIC')
++    print(f'     6502 steps={emu.steps}, code+data={len(binary)}, audio status='+str(emu.run_events[:4]))
++
++
++def test_reject():
++    bad=bytearray(make());bad[1080:1084]=b'6CHN'
++    try:read_mod(bytes(bad)); assert False
++    except ModError:pass
++    bad=make()[:1084+500]
++    try:read_mod(bad);assert False
++    except ModError:pass
++    print('PASS: invalid channel format and truncated MOD rejected')
++
++if __name__=='__main__':
++    test_good();test_reject()
+diff --git a/apps/senseiplay-iie/tools/make_demo_mod.py b/apps/senseiplay-iie/tools/make_demo_mod.py
+new file mode 100644
+index 0000000..0410e38
+--- /dev/null
++++ b/apps/senseiplay-iie/tools/make_demo_mod.py
+@@ -0,0 +1,55 @@
++#!/usr/bin/env python3
++"""Generate a tiny ORIGINAL (not copyrighted) 4-channel ProTracker MOD test."""
++from pathlib import Path
++import math
++import struct
++import argparse
++
++def make():
++    song=bytearray(1084 + 1024)
++    song[:20]=b'SENSEI8 FOUR-CHAN P0'
++    waveforms=[]
++    for i,name in enumerate(('SINE','TRIANGLE','PULSE','BELL')):
++        off=20+i*30
++        song[off:off+len(name)]=name.encode('ascii')
++        wave=[]
++        for x in range(256):
++            a=2*math.pi*x/256
++            if i==0: v=math.sin(a)*110
++            elif i==1: v=(2/math.pi)*math.asin(math.sin(a))*115
++            elif i==2: v=(110 if x < 128 else -110)
++            else: v=(math.sin(a)*100+math.sin(3*a)*24+math.sin(5*a)*10)
++            wave.append(round(max(-127,min(127,v))) & 255)
++        waveforms.extend(wave)
++        song[off+22:off+24]=struct.pack('>H',128) # length 256
++        song[off+25]=48 # volume
++        song[off+26:off+28]=struct.pack('>H',0)
++        song[off+28:off+30]=struct.pack('>H',128) # repeating loop 256
++    song[950]=1 # 1 order
++    song[951]=127
++    song[952]=0
++    song[1080:1084]=b'M.K.'
++    notes=((428,381,339,320,285,254,226,214),
++           (571,508,453,428,381,339,302,285),
++           (856,762,678,640,570,508,453,428),
++           (214,226,254,285,320,339,381,428))
++    for row in range(64):
++        for ch in range(4):
++            if row % 4 != 0:
++                continue
++            period=notes[ch][(row//4)%8]
++            sample=ch+1
++            i=1084+row*16+ch*4
++            song[i]=(sample&0xF0)|((period>>8)&0x0F)
++            song[i+1]=period&0xff
++            song[i+2]=(sample&0x0F)<<4
++            song[i+3]=0
++    return bytes(song)+bytes(waveforms)
++
++if __name__=='__main__':
++    ap=argparse.ArgumentParser()
++    ap.add_argument('--out',type=Path,default=Path('assets/sensei8-original-demo.mod'))
++    args=ap.parse_args()
++    args.out.parent.mkdir(parents=True,exist_ok=True)
++    args.out.write_bytes(make())
++    print('Generated',args.out,'bytes',args.out.stat().st_size)
+diff --git a/apps/senseiplay-iie/tools/mod_to_s8m.py b/apps/senseiplay-iie/tools/mod_to_s8m.py
+new file mode 100644
+index 0000000..ec25da7
+--- /dev/null
++++ b/apps/senseiplay-iie/tools/mod_to_s8m.py
+@@ -0,0 +1,241 @@
++#!/usr/bin/env python3
++"""Convert a 4-channel ProTracker MOD into Sensei8 P0 Merlin `module_data.s`.
++
++This is a *preload-only* first-listening conversion, NOT an implementation of
++NinjaTrackerPlus .NTP format. The original SenseiPlay uses an external 65816
++NTP player and cannot run on a 65C02. The first milestone is to prove direct
++DOC-native sample loading and 4-channel note sequencing on a stock IIe.
++
++Constraints: PAL 4ch/31 instruments; up to 255 unrolled rows, up to 28 KiB
++combined sample+event data; uses DOC bank 0 only; fixed-instrument volumes,
++Cxx cuts/level changes and Fxx speed/BPM; most tracker effects deferred.
++"""
++from __future__ import annotations
++
++import argparse
++from dataclasses import dataclass
++from pathlib import Path
++from fractions import Fraction
++import struct
++import sys
++
++PAL_CLOCK = 7_093_789.2  # Amiga PAL Paula, period -> sample rate
++DOC_CLOCK = 894_886.25   # IIgs DOC master
++DOC_OSCILLATORS = 32    # E1=$3E, core uses 0..31
++DOC_SR = DOC_CLOCK / (DOC_OSCILLATORS + 2)
++MAX_SAMPLE_BANK = 0xC000    # first 48 KiB of DOC bank 0
++MAX_TOTAL_MODULE = 0x6200  # approx. $2000..$8FFF less engine and overhead
++MAX_ROWS = 255
++
++class ModError(ValueError):
++    pass
++
++@dataclass(frozen=True)
++class Instrument:
++    index: int
++    name: str
++    sample: bytes
++    volume: int
++    repeat_start: int
++    repeat_length: int
++
++
++def be16(data: bytes, off: int) -> int:
++    return struct.unpack_from('>H', data, off)[0]
++
++
++def read_mod(data: bytes):
++    if len(data) < 1084:
++        raise ModError('Truncated ProTracker MOD header')
++    if data[1080:1084] not in (b'M.K.', b'M!K!', b'4CHN', b'FLT4'):
++        raise ModError(f'Only 4-channel 31-instrument MODs (M.K./M!K!/4CHN/FLT4); got {data[1080:1084]!r}')
++    song_len = data[950]
++    if not 1 <= song_len <= 128:
++        raise ModError(f'Invalid MOD order length {song_len}')
++    orders = tuple(data[952:952+song_len])
++    if any(p >= 128 for p in orders):
++        raise ModError('Pattern index outside 0..127')
++    num_patterns = max(orders) + 1
++    end_patterns = 1084 + 1024 * num_patterns
++    if end_patterns > len(data):
++        raise ModError('Truncated pattern data')
++    samples = []
++    pos = end_patterns
++    for i in range(31):
++        off = 20 + 30*i
++        name = data[off:off+22].split(b'\0', 1)[0].decode('latin-1', 'replace').strip()
++        length = be16(data, off+22)*2
++        volume = data[off+25]
++        repeat_start = be16(data, off+26)*2
++        repeat_length = be16(data, off+28)*2
++        if volume > 64:
++            raise ModError(f'Instrument {i+1} has illegal volume {volume}')
++        if pos+length > len(data):
++            raise ModError(f'Truncated sample data for instrument {i+1}')
++        raw = data[pos:pos+length]
++        pos += length
++        samples.append(Instrument(i+1, name, raw, volume, repeat_start, repeat_length))
++    return orders, data[1084:end_patterns], samples
++
++
++def next_pow2(n: int) -> int:
++    return 1 << (n-1).bit_length()
++
++
++def make_waves(samples: list[Instrument], used: set[int]):
++    """WTP (page), RTS ((WTS<<3)|RES), DOC CTRL oneshot flag, vol."""
++    bank = bytearray()
++    catalog = {}
++    for inst in samples:
++        if inst.index not in used:
++            continue
++        if not inst.sample:
++            raise ModError(f'Used instrument {inst.index} has empty PCM')
++        # P0 makes a single DOC table per instrument. For looping MOD
++        # samples select the loop sustain; full attack/sustain/swap needs P1.
++        valid_loop = (inst.repeat_length >= 64 and
++                      inst.repeat_start + inst.repeat_length <= len(inst.sample))
++        chosen = (inst.sample[inst.repeat_start:inst.repeat_start+inst.repeat_length]
++                  if valid_loop else inst.sample)
++        if len(chosen) > 8192:
++            raise ModError(f'Instrument {inst.index} sample {len(chosen)} > 8192; streaming/128K needed')
++        size = min(8192, max(256, next_pow2(len(chosen))))
++        if not valid_loop and len(chosen) == size:
++            # Reserve last byte for 0 HALT, preserving first size-1 bytes.
++            chosen = chosen[:-1]
++        # All tables power-of-two aligned: DOC WTP lower WTS bits masked.
++        padding = (-len(bank)) % size
++        bank.extend([0x80]*padding)
++        start = len(bank)
++        wave = bytearray((b ^ 0x80) or 1 for b in chosen)
++        wave.extend([0x80]*(size-len(wave)))
++        if not valid_loop:
++            wave[-1] = 0  # DOC one-shot HALT marker
++        bank.extend(wave)
++        if len(bank) > MAX_SAMPLE_BANK:
++            raise ModError('DOC bank 0 overflow; choose smaller samples or P1 streaming')
++        wts = (size.bit_length()-1)-8
++        rts = (wts << 3) | wts  # WTS and RES both track sample length
++        catalog[inst.index] = (start//256, rts, 0 if valid_loop else 2, inst.volume)
++    return bytes(bank), catalog
++
++
++def pitch_to_fc(period: int) -> int:
++    if period <= 0:
++        return 0
++    sample_rate = PAL_CLOCK / (2.0 * period)
++    return max(1, min(65535, round(sample_rate * 512.0 / DOC_SR)))
++
++
++def decode_event(pattern: bytes, offset: int):
++    a,b,c,d = pattern[offset:offset+4]
++    inst = (a & 0xF0) | (c >> 4)
++    period = ((a & 0x0F) << 8) | b
++    effect = c & 0x0F
++    return inst, period, effect, d
++
++
++def convert(data: bytes):
++    orders, patterns, samples = read_mod(data)
++    # Only one explicit event per MOD row. Bxx/Dxx require order control,
++    # and effects 0..A require per-tick updates not implemented by P0.
++    used = set()
++    for p in orders:
++        for row in range(64):
++            for ch in range(4):
++                inst, period, _, _ = decode_event(patterns, p*1024 + row*16 + ch*4)
++                if inst and period:
++                    used.add(inst)
++    sample_bank, catalog = make_waves(samples, used)
++    speed = 6
++    bpm = 125
++    frame_accum = Fraction(0, 1)
++    channel_instrument = [0]*4
++    channel_volume = [64]*4
++    stream = bytearray()
++    warnings = set()
++    for p in orders:
++        for row in range(64):
++            events = []
++            for ch in range(4):
++                inst, period, effect, param = decode_event(patterns, p*1024 + row*16 + ch*4)
++                if inst:
++                    channel_instrument[ch] = inst
++                    channel_volume[ch] = samples[inst-1].volume
++                if effect == 0x0F:
++                    if param == 0:
++                        warnings.add('F00 ignored (module end not implemented)')
++                    elif param <= 31:
++                        speed = param
++                    else:
++                        bpm = param
++                elif effect == 0x0C:
++                    channel_volume[ch] = min(64, param)
++                elif effect or param:  # effect 0xy arpeggio counts too
++                    warnings.add(f'Effect {effect:X}{param:02X} not supported in P0')
++                fc = 0; wtp = 0; rts = 0; vol = 0; ctrl = 0; flags = 0
++                if period:
++                    n = channel_instrument[ch]
++                    if n not in catalog:
++                        raise ModError(f'Note at row {row}, channel {ch} has no loaded instrument')
++                    wtp,rts,mode,_ = catalog[n]
++                    fc = pitch_to_fc(period)
++                    vol = min(192, channel_volume[ch]*3)
++                    ctrl = (0x10 if ch in (1,2) else 0x00) | mode
++                    flags = 1
++                elif effect == 0x0C and param == 0:
++                    flags = 2  # cut volume on existing oscillator
++                elif effect == 0x0C and param:
++                    warnings.add('Cxx volume without note deferred until P1')
++                events.extend([fc&255,fc>>8,wtp,rts,vol,ctrl,flags])
++            # ProTracker: speed ticks per row, each tick 2.5/BPM seconds.
++            # Sample the row at NTSC 60 Hz by a fractional frame accumulator.
++            frame_accum += Fraction(150 * speed, bpm)
++            duration = frame_accum.numerator // frame_accum.denominator
++            frame_accum -= duration
++            duration = max(1,min(255,duration))
++            stream.append(duration)
++            stream.extend(events)
++    nrows = len(stream)//29
++    if nrows > MAX_ROWS:
++        raise ModError(f'{nrows} rows exceed P0 255-row unrolled limit; try 1..3 orders')
++    if len(stream)+len(sample_bank) > MAX_TOTAL_MODULE:
++        raise ModError(f'{len(stream)+len(sample_bank)}-byte payload exceeds P0 main-RAM limit {MAX_TOTAL_MODULE}')
++    return sample_bank, bytes(stream), sorted(warnings), catalog
++
++
++def merlin_hex(data: bytes) -> str:
++    return ''.join('                hex   '+data[i:i+16].hex().upper()+'\n'
++                   for i in range(0,len(data),16))
++
++
++def emit(bank: bytes, rows: bytes):
++    assert rows and len(rows)%29 == 0
++    out = ['********************************************************************************',
++           '* GENERATED by tools/mod_to_s8m.py, DO NOT EDIT BY HAND.',
++           '* Copyright/source MOD samples remain local. Do not commit others\' PCM.',
++           '********************************************************************************',
++           f'SongRowCount    dw    {len(rows)//29}',
++           f'SampleBankLen   dw    {len(bank)}',
++           'SongRows', merlin_hex(rows).rstrip(),
++           'SampleBank', merlin_hex(bank).rstrip(), '']
++    return '\n'.join(out)
++
++
++def main(argv=None):
++    ap=argparse.ArgumentParser(description=__doc__)
++    ap.add_argument('mod', type=Path)
++    ap.add_argument('--out',type=Path,default=Path('src/module_data.s'))
++    ns=ap.parse_args(argv)
++    bank,rows,warnings,catalog=convert(ns.mod.read_bytes())
++    ns.out.parent.mkdir(parents=True,exist_ok=True)
++    ns.out.write_text(emit(bank,rows),encoding='ascii')
++    print(f'S8M0 PASS: {len(rows)//29} rows, {len(catalog)} instruments, '+
++          f'{len(bank)} DOC sample bytes, {len(rows)} event bytes')
++    for warning in warnings[:12]:
++        print('WARNING:',warning)
++    print('Generated',ns.out)
++
++if __name__ == '__main__':
++    try: main()
++    except (ModError, OSError) as e: sys.exit('ERROR: '+str(e))
+diff --git a/apps/senseiplay-iie/tools/s8asm.py b/apps/senseiplay-iie/tools/s8asm.py
+new file mode 100644
+index 0000000..a52b210
+--- /dev/null
++++ b/apps/senseiplay-iie/tools/s8asm.py
+@@ -0,0 +1,228 @@
++#!/usr/bin/env python3
++"""Narrow, deterministic 6502 assembler for Sensei8 P0's Merlin-style subset.
++
++Used for CI and to emit a ProDOS BLOAD binary without depending on Merlin32.
++Not a general-purpose Merlin assembler. In particular, it does not accept
++macros, 65816 opcodes, relocations, or banked addressing.
++"""
++from __future__ import annotations
++import argparse
++import ast
++from pathlib import Path
++import re
++import sys
++
++OPCODES = {
++    'lda': {'imm':0xA9,'zp':0xA5,'zpx':0xB5,'abs':0xAD,'absx':0xBD,'absy':0xB9,'indy':0xB1},
++    'sta': {'zp':0x85,'zpx':0x95,'abs':0x8D,'absx':0x9D,'absy':0x99,'indy':0x91},
++    'stx': {'zp':0x86,'abs':0x8E},
++    'sty': {'zp':0x84,'abs':0x8C},
++    'ldx': {'imm':0xA2,'zp':0xA6,'abs':0xAE},
++    'ldy': {'imm':0xA0,'zp':0xA4,'abs':0xAC},
++    'cmp': {'imm':0xC9,'zp':0xC5,'abs':0xCD},
++    'cpx': {'imm':0xE0,'zp':0xE4,'abs':0xEC},
++    'adc': {'imm':0x69,'zp':0x65,'abs':0x6D},
++    'and': {'imm':0x29,'zp':0x25,'abs':0x2D},
++    'ora': {'imm':0x09,'zp':0x05,'abs':0x0D},
++    'inc': {'zp':0xE6,'abs':0xEE},
++    'dec': {'zp':0xC6,'abs':0xCE},
++    'jsr': {'abs':0x20},
++    'jmp': {'abs':0x4C},
++    'beq': {'rel':0xF0},
++    'bne': {'rel':0xD0},
++    'bcc': {'rel':0x90},
++    'bcs': {'rel':0xB0},
++    'bpl': {'rel':0x10},
++    'bmi': {'rel':0x30},
++    'rts': {'imp':0x60},
++    'clc': {'imp':0x18},
++    'sec': {'imp':0x38},
++    'cld': {'imp':0xD8},
++    'pha': {'imp':0x48},
++    'pla': {'imp':0x68},
++    'inx': {'imp':0xE8},
++    'dex': {'imp':0xCA},
++    'iny': {'imp':0xC8},
++    'txa': {'imp':0x8A},
++    'tay': {'imp':0xA8},
++    'tax': {'imp':0xAA},
++}
++DIRECTIVES={'org','typ','equ','db','dw','asc','hex','put'}
++LABEL_RE=re.compile(r'^[A-Za-z_][A-Za-z0-9_]*$')
++
++class AssemblyError(ValueError):
++    pass
++
++
++def strip_comment(s: str) -> str:
++    # We only emit a small subset where single quotes protect all ASC text.
++    out=[]; quote=None
++    for c in s:
++        if c in "'\"":
++            if quote is None: quote=c
++            elif quote==c: quote=None
++        if c==';' and quote is None: break
++        out.append(c)
++    return ''.join(out).rstrip()
++
++
++def read_lines(root: Path):
++    out=[]
++    def read(path):
++        for n,line in enumerate(path.read_text(encoding='ascii').splitlines(),1):
++            if not line.strip() or line.lstrip().startswith('*'):
++                continue
++            line=strip_comment(line)
++            if not line.strip(): continue
++            parts=line.split(None, 2) if line[0] not in ' \t' else line.strip().split(None,1)
++            if line[0] in ' \t':
++                label=None; cmd=parts[0].lower(); arg=parts[1].strip() if len(parts)>1 else ''
++            else:
++                label=parts[0]
++                if not LABEL_RE.fullmatch(label): raise AssemblyError(f'{path}:{n}: invalid label {label}')
++                cmd=parts[1].lower() if len(parts)>1 else ''
++                arg=parts[2].strip() if len(parts)>2 else ''
++            if cmd=='put':
++                inc=path.parent/(arg+'.s')
++                if not inc.exists(): raise AssemblyError(f'Missing PUT include {inc}')
++                read(inc)
++            else: out.append((str(path),n,label,cmd,arg))
++    read(root)
++    return out
++
++
++def expr(s: str, symbols: dict[str,int], allow_missing=False):
++    s=s.strip()
++    take=None
++    if s and s[0] in '<>':
++        take=s[0]; s=s[1:]
++    m=re.fullmatch(r'([A-Za-z_][A-Za-z_0-9]*|\$[0-9a-fA-F]+|\d+)(?:([+\-])(\$[0-9a-fA-F]+|\d+))?',s)
++    if not m: raise AssemblyError('Bad expression '+repr(s))
++    t,op,num=m.groups()
++    if t.startswith('$'): val=int(t[1:],16)
++    elif t.isdigit(): val=int(t)
++    elif t in symbols: val=symbols[t]
++    elif allow_missing: val=0xFF00
++    else: raise AssemblyError('Undefined label '+t)
++    if op:
++        z=int(num[1:],16) if num.startswith('$') else int(num)
++        val=val+z if op=='+' else val-z
++    if take=='<': return val&255
++    if take=='>': return (val>>8)&255
++    return val
++
++
++def asc_bytes(arg: str):
++    items=[]; cur=''; quote=None
++    for c in arg:
++        if c in "'\"":
++            if quote is None: quote=c
++            elif quote==c: quote=None
++        if c==',' and quote is None:
++            items.append(cur.strip()); cur=''
++        else: cur+=c
++    if cur.strip(): items.append(cur.strip())
++    data=bytearray()
++    for p in items:
++        if p[0] in "'\"":
++            v=ast.literal_eval(p)
++            if not isinstance(v,str):raise AssemblyError('ASC literal required')
++            data.extend(v.encode('ascii'))
++        else:
++            n=expr(p,{})
++            if n>255: raise AssemblyError('ASC byte overflow')
++            data.append(n)
++    return bytes(data)
++
++
++def mode_for(mnem, arg, symbols):
++    supported=OPCODES[mnem]
++    if not arg: mode='imp'; token=''
++    elif arg.startswith('#'): mode='imm'; token=arg[1:]
++    elif re.fullmatch(r'\([^)]*\),[Yy]',arg): mode='indy'; token=arg[1:-3]
++    elif arg.lower().endswith(',x'):
++        token=arg[:-2].strip(); mode='zpx' if expr(token,symbols,True)<=255 and 'zpx' in supported else 'absx'
++    elif arg.lower().endswith(',y'):
++        token=arg[:-2].strip(); mode='absy'
++    elif 'rel' in supported: mode='rel'; token=arg
++    else:
++        token=arg
++        v=expr(token,symbols,True)
++        mode='zp' if v<=255 and 'zp' in supported else 'abs'
++    if mode not in supported:
++        raise AssemblyError(f'Unsupported addressing {mnem} {arg}, mode {mode}')
++    return mode,token
++
++
++def assemble(path: Path):
++    lines=read_lines(path)
++    sym={}
++    origin=0x2000
++    # 2 pass; fixed sizing. Forward labels use ABS (never forward zero-page).
++    for pass_id in (0,1):
++        pc=origin; body=bytearray()
++        for fn,n,label,cmd,arg in lines:
++            try:
++                if label:
++                    if cmd=='equ':
++                        sym[label]=expr(arg,sym)
++                        continue
++                    if pass_id==0: sym[label]=pc
++                    elif sym[label]!=pc: raise AssemblyError(f'Pass mismatch {label} {sym[label]:04X} != {pc:04X}')
++                if not cmd: continue
++                if cmd=='org':
++                    pc=expr(arg,sym)
++                    if pc!=origin: raise AssemblyError('Only fixed $2000 org allowed')
++                    continue
++                if cmd=='typ': continue
++                if cmd in ('db','dw'):
++                    count=1 if cmd=='db' else 2
++                    val=expr(arg,sym,pass_id==0)
++                    payload=bytes([val&255]) if count==1 else bytes([val&255,(val>>8)&255])
++                elif cmd=='asc': payload=asc_bytes(arg)
++                elif cmd=='hex':
++                    digits=''.join(arg.split())
++                    if len(digits)%2: raise AssemblyError('Odd-length HEX')
++                    payload=bytes.fromhex(digits)
++                else:
++                    if cmd not in OPCODES: raise AssemblyError(f'Unknown opcode {cmd}')
++                    mode,operand=mode_for(cmd,arg,sym)
++                    op=OPCODES[cmd][mode]
++                    if mode=='imp': payload=bytes([op])
++                    elif mode=='rel':
++                        off=expr(operand,sym,pass_id==0)-(pc+2)
++                        if pass_id==1 and not -128<=off<=127:
++                            raise AssemblyError(f'Branch out of range: {off:+d}')
++                        payload=bytes([op,off&255])
++                    elif mode in ('imm','zp','indy','zpx'):
++                        v=expr(operand,sym,pass_id==0)
++                        if pass_id==1 and not 0<=v<=255:
++                            raise AssemblyError('8-bit operand overflow')
++                        payload=bytes([op,v&255])
++                    else:
++                        v=expr(operand,sym,pass_id==0)
++                        payload=bytes([op,v&255,(v>>8)&255])
++                pc+=len(payload)
++                if pass_id==1: body.extend(payload)
++            except (ValueError,KeyError) as e:
++                raise AssemblyError(f'{fn}:{n} {label or ""} {cmd} {arg}: {e}') from e
++    return origin,bytes(body),sym
++
++
++def main():
++    ap=argparse.ArgumentParser(description=__doc__)
++    ap.add_argument('source',type=Path,nargs='?',default=Path('src/sensei8.s'))
++    ap.add_argument('--out',type=Path,default=Path('build/SENSEI8.BIN'))
++    a=ap.parse_args()
++    origin,body,sym=assemble(a.source)
++    if origin+len(body) > 0x9000:
++        raise SystemExit(f'ERROR: binary ends at ${origin+len(body):04X}; P0 requires < $9000')
++    a.out.parent.mkdir(parents=True,exist_ok=True)
++    a.out.write_bytes(body)
++    print(f'PASS: Sensei8 6502 BIN ${origin:04X}-${origin+len(body)-1:04X} '+
++          f'({len(body)} bytes); first byte ${body[0]:02X}; MODULE=${sym["SongRows"]:04X}')
++    print('BLOAD under DOS 3.3 at $2000, CALL 8192. NOT ProDOS BASIC.SYSTEM!')
++
++if __name__=='__main__':
++    try: main()
++    except (AssemblyError,OSError) as e: sys.exit('ERROR: '+str(e))
