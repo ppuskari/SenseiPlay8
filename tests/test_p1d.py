@@ -59,6 +59,23 @@ def run():
     no_link.run(limit=500000)
     assert no_link.upload_count==1024 and not no_link.commands
     print("PASS: older FPGA safely skips unsupported P1D mailbox")
+    class StalledMCU(LinkedIIe):
+        def __init__(self,binary):
+            super().__init__(binary,bridge=True)
+            self.panicked=False
+        def write(self,addr,val):
+            if addr==0xC0CC and val==1:
+                self.commands.append(val)
+                self.mcu_state=0  # mismatched old MCU never acknowledges
+            elif addr==0xC0CF and val==0xA5:
+                self.panicked=True
+            else:
+                super().write(addr,val)
+    stalled=StalledMCU(raw)
+    stalled.run(limit=1500000)
+    assert stalled.panicked and stalled.commands==[1]
+    assert stalled.regs[0x40]==0 and stalled.regs[0x43]==0
+    print("PASS: new FPGA + old MCU startup times out safely and panics")
     # F4EE/ProDOS QUIT wrapper byte checks (not an OS simulation).
     assert image[-24:-21]==bytes.fromhex("D8 A5 06")
     assert image[-21:-18]==bytes.fromhex("20 03 20")
