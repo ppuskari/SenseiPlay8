@@ -23,3 +23,11 @@ jobs:
         run: python3 tests/test_player.py
       - name: Check recovered original matches reproducible build
         run: cmp dist/SENSEI8-P0.BIN build/SENSEI8.BIN
+      - name: Package recovered DOS 3.3 P0 test assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: SenseiPlay8-P0-test-assets
+          path: |
+            dist/SENSEI8-P0.BIN
+            assets/sensei8-original-demo.mod
+          if-no-files-found: error
