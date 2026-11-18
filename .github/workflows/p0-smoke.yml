@@ -40,6 +40,8 @@ jobs:
           python tools/make_p1_demo_mod.py
           python tools/p1_build.py assets/sensei8-p1-three-pattern.mod
           python tests/test_p1.py
+      - name: Validate P1B pattern flow and software DOC playback
+        run: python tests/test_p1b.py
       - name: Package recovered P0 hardware test assets
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
