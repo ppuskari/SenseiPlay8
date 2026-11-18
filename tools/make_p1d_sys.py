@@ -9,7 +9,6 @@ import argparse
 from hashlib import sha256
 from pathlib import Path
 import sys
-from demo_waves import VOICE_SAMPLES
 from p1_build import P0_HASH
 from p1c_effects import Asm
 from s8asm import assemble
@@ -24,10 +23,14 @@ def create(p0: bytes):
     if sym["SampleBank"] != origin + len(p0) - 1024:
         raise ValueError("Unexpected P0 SampleBank location")
     player = bytearray(p0)
+    # Compression must operate on the DOC-encoded bank (XOR 0x80 with
+    # zero/HALT semantics), not on the unsigned MOD PCM host samples.
     for ch in range(4):
-        sample = VOICE_SAMPLES[ch]
-        assert len(sample) == 256
-        player[-1024+256*ch:-1024+256*(ch+1)] = bytes(sample[::8])*8
+        begin = len(player) - 1024 + 256*ch
+        cycle = bytes(player[begin:begin+256])
+        if len(cycle) != 256 or 0 in cycle:
+            raise ValueError("Unexpected P0 DOC waveform")
+        player[begin:begin+256] = cycle[::8]*8
     if player[0x2C:0x2F] != bytes.fromhex("20 33 21"):
         raise ValueError("Unexpected original JSR PrepareSong callsite")
     controller_address = origin + len(player)
