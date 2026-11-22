@@ -21,9 +21,9 @@
 - Improve instrument repeat/loop semantics, sample pitch mapping and 8-bit MIDI-style event scheduling.
 - Optional ProDOS 8 loader relocated out of BASIC.SYSTEM memory; disk browser and player UI.
 
-## P2 — ProDOS 8 80-column remote MOD jukebox (NEW, independent workstream)
+## P2 — A2MEDIA.SYSTEM: 80-column remote MOD jukebox (independent project)
 
-- Build `SENSEI8.SYSTEM` (ProDOS SYS $FF, entry $2000) for both
+- Build `A2MEDIA.SYSTEM` (ProDOS SYS $FF, entry $2000) for both
   Apple IIe 128K and Apple IIgs; ordinary 80×24 text screen.
 - Keep the J2R11 hardware-tested BL616 HxCMOD audio pipeline, PCM512
   transport and 2KiB sample LRU windows completely unchanged.
@@ -34,8 +34,9 @@
   bidirectional M2 mailbox extension in `a2fpga_core`.
 - [P2 detailed wire protocol, UI mock, compatibility constraints and
   hardware acceptance plan](P2_80COL_REMOTE_JUKEBOX.md).
-- This UI is **not** a conversion of the Apple-side native DOC/S8M0
-  playback engine; it operates as a remote controller for the MCU player.
+- **A2MEDIA.SYSTEM is an original application, not derived from SenseiPlay.**
+  It operates as a remote controller for the MCU audio engine; the existing
+  native DOC/S8M0 SenseiPlay8 code is a separate, unaffected prototype.
 
 ## Later / optional hardware tiers
 
