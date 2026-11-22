@@ -1,4 +1,4 @@
-# P2 design: SENSEI8.SYSTEM — Apple IIe/IIgs 80-column MOD jukebox UI
+# P2 design: A2MEDIA.SYSTEM — Apple IIe/IIgs 80-column MOD jukebox UI
 
 Date: 2026-11-22. **Design only, not a working .SYSTEM deliverable.**
 Target: ProDOS 8 on 128KiB Apple IIe and Apple IIgs, ordinary 80×24 text;
@@ -13,9 +13,12 @@ Apple II CPU is the front-end, existing a2fpga BL616 HxCMOD engine is the
 - Keep all Apple 6502 code, ProDOS build scripts, simulation, and examples in
   `ppuskari/SenseiPlay8`. M2 hardware/firmware interface work
   belongs in separate future a2fpga branches.
-- This UI is **not** the original standalone SenseiPlay8 native-DOC
-  S8M0 player. It coexists with that earlier work as an alternate
-  Apple-side remote control that does not alter native-DOC registers.
+- **A2MEDIA.SYSTEM is a new, independent ProDOS 8 application**, not a
+  SenseiPlay derivative, port, or rewrite. It coexists with the archived
+  SenseiPlay8 native-DOC/S8M0 prototype and controls the MCU over the
+  Apple expansion-slot mailbox without touching native-DOC registers.
+  The application name is **A2MEDIA.SYSTEM**; the existing SenseiPlay8
+  repository currently hosts its design work for convenience only.
 - No native Ensoniq, SSI263, Mockingboard, or A3 configuration changes
   are required. Leave the HDMI audio engine independent of Apple /RESET.
 
@@ -69,7 +72,7 @@ FPGA bus routing before making an Apple .SYSTEM application.
 ## Application model
 
 - ProDOS 8 type **SYS ($FF)**, load/entry point **$2000**, binary
-  file name `SENSEI8.SYSTEM`. Require IIe 128KiB or IIgs.
+  file name `A2MEDIA.SYSTEM`. Require IIe 128KiB or IIgs.
   Keep the application fully 6502-compatible for both, no 65816-only
   opcodes. Follow ProDOS system global page, MLI QUIT, zero-page and
   memory management conventions.
@@ -85,7 +88,7 @@ FPGA bus routing before making an Apple .SYSTEM application.
 
 ### Suggested 80×24 layout
 
-    SENSEIPLAY8 / A2FPGA MOD JUKEBOX              IIe/IIgs  44.1kHz STEREO
+    A2MEDIA / A2FPGA MOD JUKEBOX                 IIe/IIgs  44.1kHz STEREO
     SOURCE: SD (ACTIVE FAT)    FOLDER: /MODS/8CHANNEL
     -----------------------------------------------------------------------
     > 001  3EDGES.MOD                           8CH
@@ -168,7 +171,7 @@ requires separate storage arbitration / mount safety.
 1. **Apple physical bus proof (no new firmware):** signature/readback
    and M1 PING on IIe + IIgs, preferably while 80-column text is enabled.
    Validate slot-3 coexistence and the board's actual physical slot.
-2. **Apple UI shell (SenseiPlay8 branch only):** minimal SYS at $2000,
+2. **Apple UI shell (A2MEDIA workstream only):** minimal SYS at $2000,
    80-column display, keyboard navigation, mailbox discovery,
    M1 PING/STOP/NEXT/PREV; compile + emulator regression.
    No new FPGA or MCU binary required for this phase.
